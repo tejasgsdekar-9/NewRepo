@@ -1,0 +1,46 @@
+<% layout("/layouts/boilerplate")%>
+<%= success %>
+<div id="filters">
+    <div class="tax-toggle mt-2 mb-2 ms-auto">
+        <div class="form-check-reverse form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Dishplay Total After Taxes</label>
+        </div>
+    </div>
+</div>
+<div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1">
+    <% for(let list of allListings) { %>
+    <a href="/listings/<%=list._id%>" class="listing-link">
+
+        <div class="card col listing-card">
+            <img src="<%= list.image.url %>" class="card-img-top" style="height: 20rem;" alt="listings-img">
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+                <p class="card-text"><b><%= list.title %></b>
+                    <br> &#8377; <span class="prices"><%= list.price%></span>  / night
+                    <i>&nbsp;&nbsp;18%GST</i>
+                </p>
+            </div>
+        </div>
+    </a>
+    <% } %>
+</div>
+<script>
+    let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+    let flag = 0;
+    taxSwitch.addEventListener("click", () => {
+        if (taxSwitch.checked) {
+            let prices = document.getElementsByClassName("prices");
+            for (info of prices) {
+                a = Number(info.innerText) * 0.18;
+                a = a + Number(info.innerText);
+                info.innerText = a;
+            }
+        } else {
+            let prices = document.getElementsByClassName("prices");
+            for (info of prices) {
+                info.innerText = Math.floor(Number(info.innerText) / 1.18);
+            }
+        }
+    });
+</script>

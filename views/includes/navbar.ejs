@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i><b>&nbsp;YourAlbama</b></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav dropdown me-3">
+        <a class="btn btn-custom nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Search by City
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="/listings/search?city=Pune">Pune</a></li>
+          <li><a class="dropdown-item" href="/listings/search?city=Mumbai">Mumbai</a></li>
+          <li><a class="dropdown-item" href="/listings/search?city=Bangalore">Bangalore</a></li>
+          <li><a class="dropdown-item" href="/listings/search?city=Mysore">Mysore</a></li>
+          <li><a class="dropdown-item" href="/listings/search?city=Hyderabad">Hyderabad</a></li>
+          <li><a class="dropdown-item" href="/listings/search?city=Delhi">Delhi</a></li>
+        </ul>
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Create your Albama</a>
+        <% if (!currUser) { %>
+        <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+        <a class="nav-link" href="/login"><b>Log In</b></a>
+        <% } %>
+        <% if (currUser) { %>
+        <a class="nav-link" href="/logout"><b>Log Out</b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+

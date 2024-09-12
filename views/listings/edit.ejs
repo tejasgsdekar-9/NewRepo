@@ -1,0 +1,74 @@
+<% layout("/layouts/boilerplate")%>
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <h3>Editing your list</h3>
+        <form enctype="multipart/form-data" method="POST" action="/listings/<%=listing._id %>?_method=PUT" novalidate class="needs-validation">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required>
+                <div class="valid-feedback">Noiceee!</div>
+                <div class="invalid-feedback">Title shoudn't be empty!</div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="listing[description]" class="form-control" required><%=listing.description%></textarea>
+                <div class="valid-feedback">Noiceee!</div>
+                <div class="invalid-feedback">Please enter a short description</div>
+            </div>
+            <div class="mb-3">
+                Original Listing Image <br>
+                <img src="<%= orignalImageUrl %>" alt="">
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload New Image</label>
+                <input name="listing[image]" type="file" class="form-control">
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control"
+                        required>
+                    <div class="valid-feedback">Noiceee!</div>
+                    <div class="invalid-feedback">Price should be valid</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Location</label>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <select class="form-select dropdn" id="city" name="listing[location][city]" required>
+                                <option value="" disabled selected>Select City</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Pune">Pune</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Mysore">Mysore</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="state" class="form-label">State/UT</label>
+                            <select class="form-select dropdn" id="state" name="listing[location][state]" required>
+                                <option value="" disabled selected>Select State/UT</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Karnataka">Karnataka</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="country" class="form-label">Country</label>
+                            <select class="form-select dropdn" id="country" name="listing[location][country]" required>
+                                <option value="India" selected>India</option>
+                            </select>
+                            <div class="mb-3">
+                                <label for="postalCode" class="form-label">Postal Code</label>
+                                <input type="number" class="form-control" id="postal"
+                                    name="listing[location][postalCode]" placeholder="Enter postal code" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-dark mb-3">Add</button>
+        </form>
+    </div>
+</div>
