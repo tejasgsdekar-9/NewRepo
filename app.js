@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const { error } = require("console");
-const dbUrl = process.env.ATLASDB_URl;
+const dbUrl = "mongodb+srv://tejasgadekar108:x0gNzENhtQW9JtAi@cluster69.qfdpa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster69";
 async function main() {
     await mongoose.connect(dbUrl);
 }
