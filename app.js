@@ -33,7 +33,8 @@ app.use(express.static(path.join(__dirname, "/public")));
 //Setting mongoose
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
-const dbUrl = process.env.ATLASDB_URl
+const { error } = require("console");
+const dbUrl = process.env.ATLASDB_URl;
 async function main() {
     await mongoose.connect(dbUrl);
 }
@@ -45,15 +46,15 @@ main()
         console.log(err);
     });
 const store = MongoStore.create({
-    mongoUrl: dbUrl,
-    crypto: {
-        secret: process.env.SECRET,
-    },
-    touchAfter: 24 * 3600,
+        mongoUrl: dbUrl,
+        crypto: {
+            secret: process.env.SECRET,
+        },
+        touchAfter: 24 * 3600,
 });
 
 store.on("error",()=>{
-    console.log("ERROR in mongo session")
+    console.log("ERROR in mongo session",err)
 });
 
 const sessionOptions = {
@@ -68,9 +69,9 @@ const sessionOptions = {
     },
 };
 
-app.get("/", (req, res) => {
-    res.send("hi, i am root");
-});
+// app.get("/", (req, res) => {
+//     res.send("hi, i am root");
+// });
 
 
 app.use(session(sessionOptions));
